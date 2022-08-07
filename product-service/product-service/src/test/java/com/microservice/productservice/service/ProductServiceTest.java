@@ -37,6 +37,17 @@ class ProductServiceTest {
     }
 
     @Test
+    void findAllProduct(){
+        Product product = new Product();
+        List<Product> listProduct = List.of(product);
+
+        when(productRepository.findAll()).thenReturn(listProduct);
+
+        List<Product> result = productService.findAllProduct();
+        assertEquals(result.size(),1);
+    }
+
+    @Test
     void deleteProductByIdIfNull(){
         Product product = new Product();
         when(productRepository.findById(Mockito.any())).thenReturn(Optional.empty());

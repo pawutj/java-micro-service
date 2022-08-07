@@ -20,6 +20,10 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    public List<Product> findAllProduct(){
+        return (List<Product>) productRepository.findAll();
+    }
+
     public Optional<Product> deleteProductById(Long id){
         Optional<Product> oldProduct = productRepository.findById(id);
         if(oldProduct.isEmpty())
