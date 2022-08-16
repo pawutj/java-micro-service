@@ -16,6 +16,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -41,6 +42,32 @@ class ProductControllerTest {
         ResponseEntity<List<Product>> result = productController.findAllProduct();
 
         assertEquals(result.getBody().size(),1);
+    }
 
+    @Test
+    void findProductById(){
+        Product product = new Product();
+        product.setProductName("test");
+
+        Optional<Product> productOption = Optional.of(product);
+
+        when(productService.findProductById(0L)).thenReturn(productOption);
+        ResponseEntity<Optional<Product>> result = productController.findProductById(0L);
+
+        assertEquals(result.getBody().get().getProductName(),"test");
+
+    }
+
+    @Test
+    void findProductByName(){
+        Product product = new Product();
+        product.setProductName("test");
+
+        List<Product> products = List.of(product);
+
+        when(productService.findByProductName("test")).thenReturn(products);
+        ResponseEntity<List<Product>> result = productController.findProductByName("test");
+
+        assertEquals(result.getBody().size(),1);
     }
 }
