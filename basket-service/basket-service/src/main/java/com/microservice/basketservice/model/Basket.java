@@ -14,7 +14,14 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToMany
-    private List<Product> products;
+    private long userId;
+
+    @ManyToMany(cascade =  CascadeType.ALL)
+    private List<Item> items;
+
+    public Basket(){}
+    public Basket(Long userId){
+        this.userId = userId;
+    }
 
 }

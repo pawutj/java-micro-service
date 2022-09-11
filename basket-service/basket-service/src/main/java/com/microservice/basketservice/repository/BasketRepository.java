@@ -11,4 +11,5 @@ public interface BasketRepository extends CrudRepository<Basket,Long> {
     Basket save(Basket basket);
     Optional<Basket> findById(Long id);
     void deleteById(Long id);
+    Optional<Basket> findByUserId(Long id);
 }
