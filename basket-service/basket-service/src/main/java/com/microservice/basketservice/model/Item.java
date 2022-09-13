@@ -15,6 +15,9 @@ public class Item {
     private long productId;
     private int quantity;
 
+    @Transient
+    private Product product;
+
     public Item(long productId, int quantity) {
         this.productId = productId;
         this.quantity = quantity;
