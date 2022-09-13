@@ -26,6 +26,7 @@ public class BasketService {
     @Autowired
     private ItemRepository itemRepository;
 
+
     public Basket createBasket(Basket basket) {
         return basketRepository.save(basket);
     }
@@ -58,9 +59,9 @@ public class BasketService {
             for (int i = 0; i < basket.getItems().size(); i++) {
                 int quantity = basket.getItems().get(i).getQuantity();
                 long productId = basket.getItems().get(i).getProductId();
-                Item item = new Item(productId,quantity);
+                Item item = new Item(productId, quantity);
 
-                Optional<Product> productOptional= productClient.findById(quantity);
+                Optional<Product> productOptional = productClient.findById(quantity);
                 Product product = productOptional.get();
                 item.setProduct(product);
             }
@@ -68,6 +69,5 @@ public class BasketService {
         }
         throw new Exception();
     }
-
 
 }

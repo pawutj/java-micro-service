@@ -1,13 +1,14 @@
-package  com.microservice.basketservice.model;
+package com.microservice.basketservice.model;
 
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
-@Table(name ="baskets")
+@Table(name = "baskets")
 public class Basket {
 
     @Id
@@ -16,12 +17,16 @@ public class Basket {
 
     private long userId;
 
-    @ManyToMany(cascade =  CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Item> items;
 
-    public Basket(){}
-    public Basket(Long userId){
+    public Basket() {
+        this.items = new ArrayList<>();
+    }
+
+    public Basket(Long userId) {
         this.userId = userId;
+        this.items = new ArrayList<>();
     }
 
 }
